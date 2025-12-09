@@ -13,7 +13,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
 
-// Lazy loading cho các trang nặng
+// Lazy loading các trang
+const LabExercisesPage = lazy(() => import("./pages/LabExercisesPage"));
 const AnalyticsPage = lazy(() => import("./pages/AnalyticsPage"));
 const InventoryPage = lazy(() => import("./pages/InventoryPage"));
 
@@ -59,6 +60,17 @@ const App = () => (
                   </ErrorBoundary>
                 } 
               />
+
+              {/* Route Lab Exercises (MỚI THÊM) */}
+              <Route 
+                path="lab" 
+                element={
+                  <Suspense fallback={<div className="p-8 text-center text-muted-foreground">Loading Lab Exercises...</div>}>
+                    <LabExercisesPage />
+                  </Suspense>
+                } 
+              />
+
             </Route>
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="*" element={<NotFound />} />

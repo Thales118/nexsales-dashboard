@@ -7,9 +7,9 @@ import {
   Package,
   BarChart3,
   LogOut,
-  Settings,
-  Bell,
   User,
+  Hexagon, // Icon Logo xịn
+  Beaker,  // Icon cho Lab Exercises
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -28,18 +28,21 @@ const Sidebar: React.FC = () => {
     { to: '/dashboard', icon: LayoutDashboard, label: 'Overview' },
     { to: '/dashboard/inventory', icon: Package, label: 'Inventory' },
     { to: '/dashboard/analytics', icon: BarChart3, label: 'Analytics' },
+    // Thêm mục Lab Exercises vào menu
+    { to: '/dashboard/lab', icon: Beaker, label: 'Lab Exercises' },
   ];
 
   return (
     <aside className="fixed left-0 top-0 h-full w-64 bg-sidebar border-r border-sidebar-border flex flex-col">
-      {/* Logo */}
+      {/* Logo Section */}
       <div className="p-6 border-b border-sidebar-border">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-xl font-bold text-primary-foreground">N</span>
+          {/* Logo Hexagon nhìn tech hơn */}
+          <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center shadow-lg">
+            <Hexagon className="w-6 h-6 text-primary-foreground fill-current" />
           </div>
           <div>
-            <h1 className="font-bold text-lg">NexSales</h1>
+            <h1 className="font-bold text-lg tracking-tight">NexSales</h1>
             <p className="text-xs text-muted-foreground">Enterprise Dashboard</p>
           </div>
         </div>
@@ -57,7 +60,7 @@ const Sidebar: React.FC = () => {
                   cn(
                     'flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200',
                     isActive
-                      ? 'bg-sidebar-accent text-sidebar-accent-foreground'
+                      ? 'bg-sidebar-accent text-sidebar-accent-foreground shadow-sm'
                       : 'text-muted-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-foreground'
                   )
                 }
@@ -83,7 +86,7 @@ const Sidebar: React.FC = () => {
         </div>
         <Button
           variant="ghost"
-          className="w-full justify-start text-muted-foreground hover:text-destructive"
+          className="w-full justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
           onClick={handleLogout}
         >
           <LogOut className="w-5 h-5 mr-3" />
